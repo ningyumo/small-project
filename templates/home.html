@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}
+    主页
+{% endblock %}
+
+{% block content %}
+    <ul>
+        <li><a href="{% url "file_upload:file_list" %}">文件上传及下载</a></li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}
+    确认删除
+{% endblock %}
+
+{% block content %}
+    <p>你确认要删除{{ file.title }}吗？</p>
+    <form action="" method="post">
+        {% csrf_token %}
+        <button type="button"><a href="{% url "file_upload:file_list" %}">取消</a></button>
+        <button type="submit">确认</button>
+    </form>
+{% endblock %}

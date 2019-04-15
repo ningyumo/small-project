@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}
+    文件列表
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <table class="table table-bordered">
+                <tr>
+                    <th>文件名</th>
+                    <th>文件链接</th>
+                    <th>文件地址</th>
+                    <th>文件大小</th>
+                    <th>功能</th>
+                </tr>
+                {% for file in files %}
+                    <tr>
+                        <td>{{ file.title }}</td>
+                        <td>{{ file.file.url }}</td>
+                        <td>{{ file.file.name }}</td>
+                        <td>{{ file.file.size | filesizeformat }}</td>
+                        <td>
+                            <a href="{% url "file_upload:delete_file" file.pk %}" >删除</a>&nbsp;&nbsp;
+                            <a href="{% url "file_upload:file_download" file.file.name %}">下载</a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <p><a href="{% url "file_upload:form_upload" %}">普通表单上传</a></p>
+            <p><a href="{% url "file_upload:form_upload" %}">ModelForm表单上传</a></p>
+        </div>
+    </div>
+
+{% endblock %}
